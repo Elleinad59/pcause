@@ -53,7 +53,7 @@ def take_test(request):
             prediction = model.predict(input_df)[0]
             probability = model.predict_proba(input_df)[0][1]
 
-            request.session['result'] = "PCOS" if prediction == 1 else "No PCOS"
+            request.session['result'] = "probable PCOS" if prediction == 1 else "normal"
             request.session['probability'] = round(probability * 100, 2)
 
             for key, value in input_data.items():

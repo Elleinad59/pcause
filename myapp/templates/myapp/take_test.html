@@ -8,101 +8,114 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root {
-      --primary: #ff5b7f;
-      --light: #fff1f5;
-      --gradient: linear-gradient(to bottom, #fff8fa, #ffffff);
-    }
+  :root {
+    --primary: #ff5b7f;
+    --light: #fff1f5;
+    --gradient: linear-gradient(to bottom, #fff8fa, #ffffff);
+  }
 
-    body {
-      background: var(--gradient);
-      font-family: 'Poppins', sans-serif;
-    }
+  body {
+    background: var(--gradient);
+    font-family: 'Poppins', sans-serif;
+  }
 
-    .form-card:hover {
-      box-shadow: 0 12px 28px rgba(255, 91, 127, 0.12);
-    }
+  .form-card:hover {
+    box-shadow: 0 12px 28px rgba(255, 91, 127, 0.12);
+  }
 
-    .tab-dot::before {
-      content: '●';
-      color: var(--primary);
-      margin-right: 6px;
-    }
+  .tab-dot::before {
+    content: '●';
+    color: var(--primary);
+    margin-right: 6px;
+  }
 
-    .btn-submit {
-      display: inline-block;
-      width: 100%;
-      padding: 16px;
-      font-size: 1rem;
-      font-weight: 600;
-      background: linear-gradient(135deg, #ff6b8a, #ff90a7);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 8px 24px rgba(255, 91, 127, 0.25);
-    }
+  .btn-submit {
+    display: inline-block;
+    width: 100%;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #ff6b8a, #ff90a7);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 8px 24px rgba(255, 91, 127, 0.25);
+  }
 
-    .btn-submit:hover {
-      background: linear-gradient(135deg, #ff5b7f, #ff8a9c);
-      transform: translateY(-1px);
-      box-shadow: 0 10px 28px rgba(255, 91, 127, 0.35);
-    }
+  .btn-submit:hover {
+    background: linear-gradient(135deg, #ff5b7f, #ff8a9c);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 28px rgba(255, 91, 127, 0.35);
+  }
 
-    .tooltip-container {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-    }
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
 
-.tooltip-icon {
-  background-color: white;
-  color: #555;
-  border: 1.5px solid #ccc;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  width: 1.25rem;
-  height: 1.25rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  margin-left: 6px;
-  transition: all 0.2s ease;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-}
-.tooltip-icon:hover {
-  border-color: #888;
-  background-color: #f9f9f9;
-  transform: scale(1.05);
-}
+  .tooltip-icon {
+    background-color: white;
+    color: #555;
+    border: 1.5px solid #ccc;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    margin-left: 6px;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+  }
 
+  .tooltip-icon:hover,
+  .tooltip-icon:focus {
+    border-color: #888;
+    background-color: #f9f9f9;
+    transform: scale(1.05);
+    outline: none;
+  }
+
+  .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    width: 240px;
+    background-color: #fff0f4;
+    color: #4b4b4b;
+    text-align: left;
+    border-radius: 8px;
+    padding: 8px 12px;
+    position: absolute;
+    z-index: 10;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    font-size: 0.75rem;
+    transition: opacity 0.3s ease;
+  }
+
+  .tooltip-container:hover .tooltip-text,
+  .tooltip-container:focus-within .tooltip-text,
+  .tooltip-icon:focus + .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  @media (max-width: 480px) {
     .tooltip-text {
-      visibility: hidden;
-      width: 240px;
-      background-color: #fff0f4;
-      color: #4b4b4b;
-      text-align: left;
-      border-radius: 8px;
-      padding: 8px 12px;
-      position: absolute;
-      z-index: 10;
-      bottom: 120%;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-      font-size: 0.75rem;
-      opacity: 0;
-      transition: opacity 0.3s;
+      width: 200px;
+      left: 0;
+      transform: none;
     }
-
-    .tooltip-container:hover .tooltip-text,
-    .tooltip-container:focus-within .tooltip-text {
-      visibility: visible;
-      opacity: 1;
-    }
-  </style>
+  }
+</style>
 </head>
 <body class="text-gray-800 text-base sm:text-[15px] md:text-base">
 
@@ -133,7 +146,7 @@
         <label class="block font-semibold mb-2">
           BMI
           <span class="tooltip-container">
-            <span class="tooltip-icon">?</span>
+            <span class="tooltip-icon" tabindex="0" role="button">?</span>
             <span class="tooltip-text">
               BMI = weight (kg) ÷ (height in cm ÷ 100)². Example: 60 ÷ (165 ÷ 100)² = 22.
             </span>
@@ -146,7 +159,7 @@
         <label class="block font-semibold mb-2">
           Pulse Rate (bpm)
           <span class="tooltip-container">
-            <span class="tooltip-icon">?</span>
+            <span class="tooltip-icon" tabindex="0" role="button">?</span>
             <span class="tooltip-text">
               Place two fingers on your wrist or neck. Count beats for 15 seconds and multiply by 4. (e.g., 20 × 4 = 80 bpm)
             </span>
@@ -159,7 +172,7 @@
         <label class="block font-semibold mb-2">
           RR (breaths/min)
           <span class="tooltip-container">
-            <span class="tooltip-icon">?</span>
+            <span class="tooltip-icon" tabindex="0" role="button">?</span>
             <span class="tooltip-text">
               Sit relaxed. Count chest rises for 60 seconds. One inhale + exhale = one breath.
             </span>
@@ -172,7 +185,7 @@
         <label class="block font-semibold mb-2">
           Cycle Length (days)
           <span class="tooltip-container">
-            <span class="tooltip-icon">?</span>
+            <span class="tooltip-icon" tabindex="0" role="button">?</span>
             <span class="tooltip-text">
               Count from the first day of your period to the next one. Over 35 or under 21 days may indicate an irregular cycle.
             </span>
@@ -185,7 +198,7 @@
         <label class="block font-semibold mb-2">
           Cycle Type
           <span class="tooltip-container">
-            <span class="tooltip-icon">?</span>
+            <span class="tooltip-icon" tabindex="0" role="button">?</span>
             <span class="tooltip-text">
               Choose "Regular" if your cycle comes about every 21–35 days. Select "Irregular" if your periods are skipped or unpredictable.
             </span>
@@ -209,7 +222,7 @@
             <label class="block font-semibold mb-2">
               Do you have dark, velvety patches on your skin?
               <span class="tooltip-container">
-                <span class="tooltip-icon">?</span>
+                <span class="tooltip-icon" tabindex="0" role="button">?</span>
                 <span class="tooltip-text">
                   Look for dark, velvety patches on the neck, underarms, or groin. May be <strong>Acanthosis Nigricans</strong>, linked to insulin resistance.
                 </span>
@@ -220,7 +233,7 @@
             <label class="block font-semibold mb-2">
               Have you noticed unusual hair growth on your face or body?
               <span class="tooltip-container">
-                <span class="tooltip-icon">?</span>
+                <span class="tooltip-icon" tabindex="0" role="button">?</span>
                 <span class="tooltip-text">
                   Notice coarse or dark hair on chin, chest, stomach, or back? This is <strong>Hirsutism</strong>, often caused by hormonal imbalance in PCOS.
                 </span>
@@ -231,7 +244,7 @@
             <label class="block font-semibold mb-2">
               Are you experiencing hair thinning or balding?
               <span class="tooltip-container">
-                <span class="tooltip-icon">?</span>
+                <span class="tooltip-icon" tabindex="0" role="button">?</span>
                 <span class="tooltip-text">
                   Answer "Yes" if you notice thinning hair near the crown or top of the scalp — this pattern is common in <strong>Alopecia</strong> linked to PCOS.
                 </span>
@@ -242,7 +255,7 @@
             <label class="block font-semibold mb-2">
               Are you experiencing weight gain?
               <span class="tooltip-container">
-                <span class="tooltip-icon">?</span>
+                <span class="tooltip-icon" tabindex="0" role="button">?</span>
                 <span class="tooltip-text">
                   Gaining weight easily or without clear reason? PCOS often causes this due to hormonal or metabolic changes.
                 </span>
@@ -253,7 +266,7 @@
             <label class="block font-semibold mb-2">
               Do you frequently eat fast food?
               <span class="tooltip-container">
-                <span class="tooltip-icon">?</span>
+                <span class="tooltip-icon" tabindex="0" role="button">?</span>
                 <span class="tooltip-text">
                   Choose "Yes" if you eat fried, sugary, or processed food 3 or more times a week. Diet is a key factor in PCOS symptoms.
                 </span>
@@ -264,7 +277,7 @@
             <label class="block font-semibold mb-2">
               Do you experience frequent or hormonal acne?
               <span class="tooltip-container">
-                <span class="tooltip-icon">?</span>
+                <span class="tooltip-icon" tabindex="0" role="button">?</span>
                 <span class="tooltip-text">
                   Hormonal acne tends to show around the chin, jawline, or cheeks — frequent or cystic breakouts may relate to PCOS.
                 </span>
