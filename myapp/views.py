@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 from lime.lime_tabular import LimeTabularExplainer
 from io import BytesIO
 import base64
+import os
+from django.conf import settings
 
 # Feature mapping from form names to final dataset headers
 yes_no_fields = ['hair-growth', 'weight-gain', 'skin-darkening', 'fast-food', 'pimples', 'hair-loss']
@@ -44,7 +46,8 @@ def take_test(request):
 
             input_df = pd.DataFrame([input_data])
 
-            model_path = 'myapp/models/knn_config4_model.pkl'
+            # ✅ Absolute path to model file
+            model_path = os.path.join(settings.BASE_DIR, 'myapp', 'models', 'knn_config4_model.pkl')
             model = joblib.load(model_path)
 
             prediction = model.predict(input_df)[0]
@@ -110,12 +113,14 @@ def result_view(request):
     summary_text = None
 
     try:
-        model_path = 'myapp/models/knn_config4_model.pkl'
+        # ✅ Absolute paths for model and background data
+        model_path = os.path.join(settings.BASE_DIR, 'myapp', 'models', 'knn_config4_model.pkl')
         model = joblib.load(model_path)
         preprocessor = model.named_steps['pre']
         classifier = model.named_steps['clf']
 
-        background_df = pd.read_csv('myapp/models/final_lime_background.csv')
+        background_path = os.path.join(settings.BASE_DIR, 'myapp', 'models', 'final_lime_background.csv')
+        background_df = pd.read_csv(background_path)
 
         explainer = LimeTabularExplainer(
             training_data=background_df.values,
@@ -175,14 +180,12 @@ def result_view(request):
             'hair_loss_y_n': 'Hair thinning or loss'
         }
 
-        # Summary text logic
         top_factors = []
         for i, w in sorted_exp[:3]:
             fname = explainer.feature_names[i]
             label = friendly_labels.get(fname, fname.replace('_', ' ').capitalize())
             direction = "Increased PCOS risk" if w > 0 else "Reduced PCOS risk"
             top_factors.append(f"{label} — <span style='font-style: italic;'>{direction}</span>")
-
 
         summary_text = """
 <div style="margin-top: 1rem; font-weight: 400;">
@@ -198,7 +201,6 @@ def result_view(request):
 </div>
 """.format("".join(f"<li>{f}</li>" for f in top_factors))
 
-
     except Exception as e:
         lime_plot = None
         summary_text = None
@@ -210,8 +212,6 @@ def result_view(request):
         'lime_plot': lime_plot,
         'summary_text': summary_text
     })
-
-
 
 def pcos_view(request):
     return render(request, 'myapp/pcos.html')
