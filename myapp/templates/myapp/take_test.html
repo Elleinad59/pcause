@@ -102,9 +102,7 @@
     transition: opacity 0.3s ease;
   }
 
-  .tooltip-container:hover .tooltip-text,
-  .tooltip-container:focus-within .tooltip-text,
-  .tooltip-icon:focus + .tooltip-text {
+  .tooltip-container.active .tooltip-text {
     visibility: visible;
     opacity: 1;
   }
@@ -316,22 +314,23 @@
   </footer>
 
   <script>
-    // JavaScript for dynamic tooltip positioning
-    document.querySelectorAll('.tooltip-container').forEach(function (tooltip) {
-      tooltip.addEventListener('mouseenter', function () {
-        const tooltipText = this.querySelector('.tooltip-text');
-        const rect = this.getBoundingClientRect();
-        const tooltipRect = tooltipText.getBoundingClientRect();
-        
-        // Check if the tooltip is too far right, if so, reposition it to the left
-        if (rect.left + tooltipRect.width > window.innerWidth) {
-          tooltipText.style.left = 'auto';
-          tooltipText.style.right = '50%';
-          tooltipText.style.transform = 'translateX(50%)';
-        } else {
-          tooltipText.style.left = '50%';
-          tooltipText.style.transform = 'translateX(-50%)';
-          tooltipText.style.right = 'auto';
+    // JavaScript for toggling tooltip visibility
+    document.querySelectorAll('.tooltip-icon').forEach(function (icon) {
+      icon.addEventListener('click', function (event) {
+        // Prevent the event from propagating
+        event.stopPropagation();
+
+        // Toggle the active class to show/hide the tooltip
+        const tooltipContainer = this.closest('.tooltip-container');
+        tooltipContainer.classList.toggle('active');
+      });
+    });
+
+    // Close tooltips when clicking outside
+    document.addEventListener('click', function (event) {
+      document.querySelectorAll('.tooltip-container').forEach(function (tooltipContainer) {
+        if (!tooltipContainer.contains(event.target)) {
+          tooltipContainer.classList.remove('active');
         }
       });
     });
