@@ -1,0 +1,239 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pcause | PCOS Risk Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink: #fdd0dc;
+      --light-pink: #fff1f5;
+      --primary: #ff5b7f;
+      --highlight: #ff5b7f;
+      --dark: #1c1c1c;
+      --gray: #777;
+      --card-border: #fadadd;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #fff8fa, #ffffff);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: -60px 20px 60px;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1;
+      max-width: 500px;
+    }
+
+    .hero-title {
+      font-size: 36px;
+      margin-bottom: 16px;
+      line-height: 1.4;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .highlight-gradient {
+      background: linear-gradient(90deg, #ff5b7f 0%, #ffa4c2 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    .pill-tag {
+      background-color: #ffe5ee;
+      color: #ff3c69;
+      font-weight: 600;
+      padding: 4px 14px;
+      font-size: 0.95em;
+      border-radius: 999px;
+      display: inline-block;
+      margin-left: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .pill-tag:hover {
+      background-color: #ffd6e2;
+    }
+
+    .hero-text p {
+      font-size: 16px;
+      color: var(--gray);
+    }
+
+    .hero-img {
+      flex: 1;
+      text-align: center;
+    }
+
+    .hero-img img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.05));
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: -85px;
+    }
+
+    .card {
+  background: linear-gradient(145deg, #fff0f6, #fff7fa);
+  border: 1px solid #fcd1dc;
+  border-radius: 16px;
+  padding: 20px;
+  min-height: 230px; /* ✅ This ensures all cards are same height */
+  box-shadow: 0 8px 20px rgba(255, 91, 127, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(255, 91, 127, 0.2);
+      border-color: #ffafc1;
+      background: linear-gradient(145deg, #ffeaf2, #fff8fc);
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .card p {
+      color: var(--gray);
+      font-size: 15px;
+    }
+
+    .img-uterus, .img-heart {
+      width: 60px;
+      margin: 16px 0;
+      transform: scale(2);
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #ff6b8a, #ff90a7);
+      border-radius: 12px;
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      color: white;
+      margin-top: 20px;
+      box-shadow: 0 4px 12px rgba(255, 107, 138, 0.2);
+      transition: all 0.3s ease;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #ff5b7f, #ff8a9c);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255, 91, 127, 0.25);
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .img-uterus, .img-heart {
+        transform: scale(1.5);
+        margin: 10px auto;
+      }
+    }
+.img-uterus {
+  width: 60px;
+  transform: scale(2);
+  margin: 12px 0 12px 8px; /* top, right, bottom, left */
+  display: block;
+}
+  </style>
+</head>
+<body>
+
+  {% include 'myapp/partials/navbar.html' %}
+
+  <div class="container">
+    <section class="hero">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          Know your <span class="highlight-gradient">risk</span> of having 
+          <span class="pill-tag">PCOS</span>
+        </h1>
+        <p>Take a short assessment and better understand your probability of having polycystic ovary syndrome.</p>
+      </div>
+      <div class="hero-img">
+        <img src="/static/myapp/img/tree.png" alt="PCOS Tree Graphic" />
+      </div>
+    </section>
+
+    <section class="cards">
+      <a href="{% url 'pcos' %}" style="text-decoration: none; color: inherit;">
+        <div class="card">
+          <h3>PCOS</h3>
+          <img src="/static/myapp/img/uterus.png" alt="Uterus Icon" class="img-uterus" />
+          <p><strong>Polycystic Ovary Syndrome</strong></p>
+          <p>A common hormonal disorder that affects ovarian function and hormone levels.</p>
+        </div>
+      </a>
+
+      <a href="{% url 'about' %}" style="text-decoration: none; color: inherit;">
+        <div class="card">
+          <h3>About Us</h3>
+          <p>Learn more about our mission to empower individuals by providing a PCOS assessment.</p>
+          <img src="/static/myapp/img/heart.png" alt="Heart Icon" class="img-heart" />
+        </div>
+      </a>
+
+      <div class="card test-card">
+        <h3>Test</h3>
+        <p>Are you of reproductive age? Take the test to estimate your likelihood of having the syndrome.</p>
+        <a href="{% url 'take_test' %}" class="btn">Take the Test</a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

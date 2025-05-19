@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About PCOS | Pcause</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-pink-50 text-gray-800 font-sans">
+
+  {% include 'myapp/partials/navbar.html' %}
+
+  <!-- Hero Section -->
+  <section class="text-center py-16 px-4 sm:px-6 bg-pink-100">
+    <h1 class="text-3xl sm:text-4xl font-bold mb-4">Understand <span class="text-pink-500">PCOS</span></h1>
+    <p class="text-base sm:text-lg max-w-2xl mx-auto text-gray-700">
+      Polycystic Ovary Syndrome (PCOS) affects millions of women globally. Learn the symptoms, risks, and how our AI tool helps assess your risk easily and privately.
+    </p>
+  </section>
+
+  <!-- Section 1: What is PCOS -->
+  <section class="py-12 px-4 sm:px-6 max-w-6xl mx-auto">
+    <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-pink-600 text-center">What is PCOS?</h2>
+    <p class="mb-6 text-gray-700 text-center max-w-3xl mx-auto text-base sm:text-lg">
+      Polycystic Ovary Syndrome (PCOS) is a complex hormonal, genetic, and metabolic disorder that affects women of reproductive age. It’s one of the leading causes of infertility and is linked to long-term health risks including <strong>type 2 diabetes</strong>, <strong>anxiety and depression</strong>, <strong>cardiovascular disease</strong>, and <strong>endometrial cancer</strong>.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+      <div class="bg-white border-l-4 border-pink-500 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h3 class="text-xl sm:text-2xl font-bold text-pink-600 mb-2">10–15%</h3>
+        <p class="text-sm sm:text-base text-gray-700">of women are estimated to have Polycystic Ovary Syndrome.</p>
+      </div>
+      <div class="bg-white border-l-4 border-pink-500 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h3 class="text-xl sm:text-2xl font-bold text-pink-600 mb-2">50%</h3>
+        <p class="text-sm sm:text-base text-gray-700">of women with PCOS go undiagnosed due to lack of awareness.</p>
+      </div>
+      <div class="bg-white border-l-4 border-pink-500 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h3 class="text-xl sm:text-2xl font-bold text-pink-600 mb-2">50%</h3>
+        <p class="text-sm sm:text-base text-gray-700">of women with PCOS will develop type 2 diabetes before age 40.</p>
+      </div>
+      <div class="bg-white border-l-4 border-pink-500 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h3 class="text-xl sm:text-2xl font-bold text-pink-600 mb-2">3×</h3>
+        <p class="text-sm sm:text-base text-gray-700">increased risk of developing endometrial cancer with PCOS.</p>
+      </div>
+      <div class="bg-white border-l-4 border-pink-500 p-6 rounded-xl shadow hover:shadow-lg transition col-span-1 sm:col-span-2 lg:col-span-1">
+        <h3 class="text-base sm:text-lg font-semibold text-pink-600 mb-2">Symptoms Often Include:</h3>
+        <ul class="list-disc list-inside text-gray-700 text-sm sm:text-base">
+          <li>Irregular periods</li>
+          <li>Weight gain</li>
+          <li>Excess facial/body hair</li>
+          <li>Severe acne</li>
+          <li>Infertility</li>
+          <li>Insulin resistance</li>
+          <li>Anxiety and depression</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="mt-8 text-xs sm:text-sm text-center text-gray-500">
+      Source: <a href="https://pcoschallenge.org" class="underline text-pink-600" target="_blank">PCOS Challenge</a>
+    </p>
+  </section>
+
+  <!-- Section 2: Why It Matters -->
+  <section class="py-12 px-4 sm:px-6 bg-white max-w-6xl mx-auto">
+    <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-pink-600 text-center">Why It Matters</h2>
+    <p class="text-sm sm:text-base text-gray-700 text-center max-w-3xl mx-auto mb-8">
+      PCOS isn’t just about irregular periods or acne — it's a lifelong health condition that can silently affect your fertility, mental well-being, and metabolic health if left untreated.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-pink-50 border border-pink-200 p-6 rounded-xl shadow hover:shadow-md transition">
+        <h3 class="text-base sm:text-lg font-semibold text-pink-600 mb-2">Fertility & Reproductive Health</h3>
+        <p class="text-sm sm:text-base text-gray-700">
+          PCOS is one of the most common causes of ovulatory infertility. Many women only discover they have it after facing challenges trying to conceive.
+          <a href="https://www.nichd.nih.gov/health/topics/pcos/conditioninfo" class="text-pink-600 underline" target="_blank">[NIH]</a>
+        </p>
+      </div>
+      <div class="bg-pink-50 border border-pink-200 p-6 rounded-xl shadow hover:shadow-md transition">
+        <h3 class="text-base sm:text-lg font-semibold text-pink-600 mb-2">Metabolic & Heart Risks</h3>
+        <p class="text-sm sm:text-base text-gray-700">
+          PCOS increases the risk of insulin resistance, type 2 diabetes, high cholesterol, and heart disease — especially if symptoms are ignored.
+          <a href="https://www.cdc.gov/diabetes/risk-factors/pcos-polycystic-ovary-syndrome.html" class="text-pink-600 underline" target="_blank">[CDC]</a>
+        </p>
+      </div>
+      <div class="bg-pink-50 border border-pink-200 p-6 rounded-xl shadow hover:shadow-md transition">
+        <h3 class="text-base sm:text-lg font-semibold text-pink-600 mb-2">Mental Health Impact</h3>
+        <p class="text-sm sm:text-base text-gray-700">
+          Women with PCOS are more likely to experience anxiety, depression, and low self-esteem — mental health support is essential.
+          <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3809635/" class="text-pink-600 underline" target="_blank">[NCBI]</a>
+        </p>
+      </div>
+      <div class="bg-pink-50 border border-pink-200 p-6 rounded-xl shadow hover:shadow-md transition">
+        <h3 class="text-base sm:text-lg font-semibold text-pink-600 mb-2">Early Awareness Changes Everything</h3>
+        <p class="text-sm sm:text-base text-gray-700">
+          Timely lifestyle changes and monitoring can dramatically reduce long-term risks. But awareness is the first step — and many are still in the dark.
+          <a href="https://www.who.int/news-room/fact-sheets/detail/polycystic-ovary-syndrome" class="text-pink-600 underline" target="_blank">[WHO]</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: How We Help -->
+  <section class="py-12 px-4 sm:px-6 max-w-6xl mx-auto">
+    <h2 class="text-xl sm:text-2xl font-bold mb-4 text-pink-600">How We Help</h2>
+    <p class="text-sm sm:text-base text-gray-700 mb-6">
+      Our AI-powered risk assessment tool analyzes your self-reported health data to provide an instant PCOS risk estimate. It's private, fast, and based on modern medical research.
+    </p>
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <ul class="list-disc pl-6 space-y-2 text-sm sm:text-base text-gray-700">
+        <li>Provides PCOS risk estimation (not a clinical diagnosis).</li>
+        <li>Built on machine learning models trained on medical datasets.</li>
+        <li>Your personal data remains confidential and secure.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section 4: Take Action -->
+  <section class="text-center py-16 bg-pink-100 px-4">
+    <h2 class="text-2xl sm:text-3xl font-bold mb-6">Ready to Take the Test?</h2>
+    <p class="mb-6 text-base sm:text-lg text-gray-700 max-w-xl mx-auto">Answer a few simple questions and get an estimate of your PCOS risk instantly.</p>
+    <a href="{% url 'take_test' %}" class="inline-block bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition">
+      Take the Test
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-gray-500 py-6 text-xs sm:text-sm">
+    &copy; 2025 Pcause. All rights reserved.
+  </footer>
+
+</body>
+</html>

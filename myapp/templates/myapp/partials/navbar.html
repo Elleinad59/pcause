@@ -1,0 +1,122 @@
+{% load static %}
+<style>
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 60px;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 10;
+  }
+
+  .logo a {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff5b7f;
+    text-transform: lowercase;
+    text-decoration: none;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+  }
+
+  .nav-toggle span {
+    width: 24px;
+    height: 2px;
+    background-color: #1c1c1c;
+    transition: all 0.3s ease;
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+    align-items: center;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #1c1c1c;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  nav a:hover {
+    color: #ff5b7f;
+  }
+
+  .nav-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    transform: scale(2);
+  }
+
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    nav.open {
+      display: flex;
+    }
+
+    nav ul {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    nav ul li:last-child {
+      margin-top: 8px;
+    }
+  }
+</style>
+
+<header>
+  <div class="logo">
+    <a href="{% url 'landing' %}">Pcause</a>
+  </div>
+
+  <div class="nav-toggle" onclick="toggleNav()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav id="navbar">
+    <ul>
+      <li><a href="{% url 'pcos' %}">PCOS</a></li>
+      <li><a href="{% url 'about' %}">About Us</a></li>
+      <li><a href="{% url 'take_test' %}">Test</a></li>
+      <li>
+        <img src="{% static 'myapp/img/pcoslogo.png' %}" alt="PCOS Logo" class="nav-logo" />
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  function toggleNav() {
+    const nav = document.getElementById("navbar");
+    nav.classList.toggle("open");
+  }
+</script>

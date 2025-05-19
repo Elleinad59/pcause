@@ -1,0 +1,32 @@
+"""
+URL configuration for pcause project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/5.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin 
+from django.urls import path
+from myapp import views
+from myapp.views import landing_page, result_view, pcos_view, about_view  
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', landing_page, name='landing'),
+    path('take-test/', views.take_test, name='take_test'),
+    path('results/', result_view, name='result_view'),
+    path('pcos/', pcos_view, name='pcos'),  
+    path('about/', about_view, name='about'),
+]
+
+
+

@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pcause | Prediction Result</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --primary: #ff5b7f;
+      --light: #fff1f5;
+      --bg: #fff8fa;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #fff8fa, #ffffff);
+    }
+
+    .tab-dot::before {
+      content: '●';
+      color: var(--primary);
+      margin-right: 6px;
+    }
+
+    .btn-submit {
+      display: inline-block;
+      width: 100%;
+      padding: 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #ff6b8a, #ff90a7);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 8px 24px rgba(255, 91, 127, 0.25);
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, #ff5b7f, #ff8a9c);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 28px rgba(255, 91, 127, 0.35);
+    }
+  </style>
+  <script>
+    function toggleExplanation() {
+      document.getElementById('explanation-section').classList.toggle('hidden');
+    }
+  </script>
+</head>
+<body class="text-gray-800 text-sm sm:text-base">
+
+  {% include 'myapp/partials/navbar.html' %}
+
+  <!-- Step Indicator -->
+  <div class="text-center mt-10 mb-4 text-sm sm:text-base font-medium text-gray-500">
+    <span class="text-gray-400">Step ① Predict</span>
+    <span class="mx-2">→</span>
+    <span class="tab-dot text-pink-600">Step ② Results</span>
+  </div>
+
+  <!-- Result Card -->
+  <div class="bg-white max-w-xl mx-auto p-6 sm:p-10 rounded-2xl shadow-lg">
+    <h2 class="text-2xl sm:text-3xl font-bold text-center text-pink-600 mb-4">Prediction Result</h2>
+    <p class="text-center text-gray-500 text-sm sm:text-base mb-4">Based on your input data:</p>
+
+    {% if result %}
+      <div class="border-2 border-pink-500 rounded-xl text-center py-4 px-6 text-lg sm:text-xl font-semibold mb-3">
+        prediction: {{ result|lower }}
+      </div>
+      <p class="text-center text-gray-600 text-sm sm:text-base mb-6">
+        Estimated likelihood: <strong>{{ probability }}%</strong>
+      </p>
+    {% else %}
+      <div class="border-2 border-red-500 text-red-600 rounded-xl text-center py-4 px-6 text-lg font-semibold mb-3">
+        No result available
+      </div>
+    {% endif %}
+
+    <!-- Action Buttons -->
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mt-6">
+      {% if lime_plot %}
+        <button onclick="toggleExplanation()" class="text-sm sm:text-base text-pink-600 font-medium underline hover:text-pink-700 transition">
+          ▼ See explanation
+        </button>
+      {% else %}
+        <span></span>
+      {% endif %}
+
+      <a href="{% url 'take_test' %}"
+         class="w-full sm:w-auto inline-block text-center font-semibold text-white 
+                bg-[linear-gradient(135deg,#ff6b8a,#ff90a7)] 
+                hover:bg-[linear-gradient(135deg,#ff5b7f,#ff8a9c)] 
+                px-6 py-4 rounded-[12px] shadow-md 
+                transition-all duration-200 hover:shadow-lg 
+                hover:translate-y-[-1px]">
+        Enter Another Set of Data
+      </a>
+    </div>
+
+    <!-- Explanation Box -->
+    {% if lime_plot %}
+      <div id="explanation-section" class="hidden bg-pink-50 border border-pink-200 rounded-xl mt-6 p-6 text-sm sm:text-base text-gray-800 leading-relaxed">
+        <img src="data:image/png;base64,{{ lime_plot }}" alt="LIME Explanation" class="w-full rounded-md mb-4" />
+        {% if summary_text %}
+          <div>{{ summary_text|safe }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  <footer class="text-center text-sm text-gray-500 mt-12 mb-6">
+    &copy; 2025 Pcause. All rights reserved.
+  </footer>
+</body>
+</html>
