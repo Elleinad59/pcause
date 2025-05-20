@@ -128,16 +128,20 @@ def result_view(request):
 
 
         explainer = LimeTabularExplainer(
-            training_data=background_df.values,
+            training_data=background_df_raw.values,  # RAW background
             feature_names=feature_names,
             class_names=['No PCOS', 'PCOS'],
             mode='classification'
         )
 
         exp = explainer.explain_instance(
-            data_row=input_df.iloc[0].values,
-            predict_fn=lambda x: model.predict_proba(pd.DataFrame(x, columns=feature_names))
+            data_row=input_df.iloc[0].values,  # raw input
+            predict_fn=lambda x: classifier.predict_proba(
+                preprocessor.transform(pd.DataFrame(x, columns=feature_names))
+            ),
+            num_features=len(feature_names)
         )
+
 
 
 
