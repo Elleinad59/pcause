@@ -120,7 +120,12 @@ def result_view(request):
         classifier = model.named_steps['clf']
 
         background_path = os.path.join(settings.BASE_DIR, 'myapp', 'models', 'final_lime_background.csv')
-        background_df = pd.read_csv(background_path)
+        background_df_raw = pd.read_csv(background_path)
+        background_df = pd.DataFrame(
+            preprocessor.transform(background_df_raw),
+            columns=feature_names
+        )
+
 
         explainer = LimeTabularExplainer(
             training_data=background_df.values,
