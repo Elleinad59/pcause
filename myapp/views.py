@@ -131,9 +131,11 @@ def result_view(request):
 
         exp = explainer.explain_instance(
             data_row=input_df.iloc[0].values,
-            predict_fn=lambda x: model.predict_proba(pd.DataFrame(x, columns=feature_names))
-
+            predict_fn=lambda x: classifier.predict_proba(
+                preprocessor.transform(pd.DataFrame(x, columns=feature_names))
+            )
         )
+
 
         class_label = 1
         local_exp = exp.local_exp[class_label]
