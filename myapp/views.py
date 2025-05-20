@@ -156,7 +156,7 @@ def result_view(request):
         sorted_exp = sorted(exp_map.items(), key=lambda x: abs(x[1]), reverse=True)
         indices = [i for i, _ in sorted_exp]
         weights = [w for _, w in sorted_exp]
-        features = [exp.domain_mapper.visualize_instance(input_df.iloc[0].values, local_exp)[i][0] for i in indices]
+        features = [explainer.feature_names[i] for i in indices]
         colors = ['green' if w > 0 else 'red' for w in weights]
 
         fig, ax = plt.subplots(figsize=(10, 6))
